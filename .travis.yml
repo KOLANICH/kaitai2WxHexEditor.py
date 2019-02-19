@@ -1,0 +1,18 @@
+os:
+  - linux
+  - osx
+dist: trusty
+sudo: required
+language: python
+python:
+  - "3.6"
+  - "nightly"
+  - "pypy3-nightly"
+before_install:
+  - source ./.ci/before.sh
+install:
+  - pip3 install --upgrade ./
+script:
+  - coverage run --source=pyxgboost setup.py test
+after_success:
+  - coveralls
